@@ -1,0 +1,78 @@
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "redhat";
+  src: url("./fonts/red-hat-display-v7-latin-regular.woff2") format("woff2"),
+    url("./fonts/red-hat-display-v7-latin-regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "redhat", sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.root {
+  height: 100vh;
+}
+
+.container {
+  position: relative;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.container-inner {
+  padding: 50px 0 120px;
+  min-height: calc(100vh - 151px);
+}
+
+.page-header-step {
+  margin-bottom: 30px;
+}
+
+.blank {
+  font-size: 24px;
+  font-weight: 100;
+  color: #a7a7a7;
+}
+
+.marked {
+  font-size: 24px;
+  font-weight: 800;
+  color: white;
+}
+
+.page-wrapper {
+  display: flex;
+  /* grid-template-rows: auto 70px; */
+  border-radius: 8px;
+  background-color: #3d3c40;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+  /* display: flex; */
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
+  padding: 45px;
+}
+
+.partner {
+  display: grid;
+  place-items: center;
+  width: 250px;
+  height: 250px;
+  border: 1px solid #ff574b;
+  border-radius: 8px;
+  /* margin-left: 100px; */
+  background-color: #3d3c40;
+}
+
+.partner img {
+  min-width: 100px;
+  max-width: 200px;
+}

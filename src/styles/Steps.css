@@ -1,0 +1,42 @@
+.steps-wrapper {
+  background-color: #3d3c40;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  padding: 16px 24px;
+  margin-bottom: 8px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+}
+
+.selected {
+  background-color: #8687f7;
+  color: #8687f7;
+}
+
+.steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.step-icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  border: 1px solid #a7a7a7;
+  border-radius: 50%;
+}
+
+.step-header {
+  margin-left: 8px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  user-select: none;
+  color: white;
+}

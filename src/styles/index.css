@@ -1,0 +1,13 @@
+html,
+body {
+  background-color: #1d1d1f;
+  margin: 0;
+  font-family: "Red Hat Display", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
