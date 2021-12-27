@@ -1,9 +1,17 @@
 .sortable-item {
-  width: 200px;
-  height: 200px;
-  background-color: white;
+  display: grid;
+  place-items: center;
+  width: 250px;
+  height: 150px;
+  border: 1px solid white;
   border-radius: 8px;
+  background-color: #3d3c40;
   margin: 5px;
+  z-index: 1;
+}
+
+.sortable-item img {
+  max-width: 100px;
 }
 
 .sortable-item:hover {

@@ -51,28 +51,10 @@ body {
 
 .page-wrapper {
   display: flex;
-  /* grid-template-rows: auto 70px; */
   border-radius: 8px;
   background-color: #3d3c40;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
-  /* display: flex; */
+  box-shadow: 0px 2px 4px rgba(10, 8, 8, 0.15);
   flex-wrap: wrap;
   /* justify-content: space-between; */
   padding: 45px;
-}
-
-.partner {
-  display: grid;
-  place-items: center;
-  width: 250px;
-  height: 250px;
-  border: 1px solid #ff574b;
-  border-radius: 8px;
-  /* margin-left: 100px; */
-  background-color: #3d3c40;
-}
-
-.partner img {
-  min-width: 100px;
-  max-width: 200px;
 }

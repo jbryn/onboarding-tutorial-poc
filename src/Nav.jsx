@@ -27,20 +27,30 @@ function Nav() {
           </svg>
         </a>
         <div className="navigation-links">
-          <p href="/campaigns" className="navigation-item">
+          <p id="campaigns" href="/campaigns" className="navigation-item">
             Campaigns
           </p>
-          <p href="/overlays" className="navigation-item">
+          <p id="overlays" href="/overlays" className="navigation-item">
             Overlays
           </p>
-          <p href="/partner-rotators" className="navigation-item active">
+          {/* <p href="/partner-rotators" className="navigation-item active">
             Partner rotators
-          </p>
-          <p href="/streamers" className="navigation-item">
+          </p> */}
+
+          <p id="streamers" href="/streamers" className="navigation-item">
             Streamers
           </p>
-          <p href="/reports" className="navigation-item">
+          <p id="monitoring" href="/monitoring" className="navigation-item">
+            Monitoring
+          </p>
+          <p id="statistics" href="/statistics" className="navigation-item">
+            Statistics
+          </p>
+          <p id="reports" href="/reports" className="navigation-item">
             Reports
+          </p>
+          <p id="faq" href="/faq" className="navigation-item">
+            FAQ
           </p>
         </div>
         <div className="navigation-item">

@@ -2,34 +2,15 @@ import Nav from "./Nav";
 import Steps from "./Steps";
 import "./styles/App.css";
 import { useState } from "react";
-import { DndContext, closestCenter } from "@dnd-kit/core";
+import { DndContext, closestCenter, DragOverlay } from "@dnd-kit/core";
 import {
   arrayMove,
   SortableContext,
   horizontalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import SortableItem from "./SortableItem";
-
-const partners = [
-  {
-    id: "g2",
-    image: "/2006110.webp",
-  },
-  { id: "fnatic", image: "/fnatic.png" },
-  {
-    id: "faze",
-    image: "/faze.png",
-  },
-  // { id: "fnatic1", image: "/fnatic.png" },
-  // {
-  //   id: "faze1",
-  //   image: "/faze.png",
-  // },
-  // {
-  //   id: "g21",
-  //   image: "/2006110.webp",
-  // },
-];
+import Item from "./Item";
+import Joyride from "react-joyride";
 
 function App() {
   const [items, setItems] = useState([
@@ -80,20 +61,63 @@ function App() {
     },
   ]);
 
-  // const [items, setItems] = useState([{ id: "1" }, { id: "2" }, { id: "3" }]);
-  // const [items, setItems] = useState(["1", "2", "3"]);
+  const [steps, setSteps] = useState([
+    {
+      target: "#campaigns",
+      content:
+        "Set up a campaign remotely for selected streamers and start receiving a detailed report",
+    },
+    {
+      target: "#overlays",
+      content:
+        "Customise, preview and archive stream overlays for individual streamers",
+    },
+    {
+      target: "#streamers",
+      content:
+        "Comfortably manage all invited streamers in one, nifty space. Sort streamers by various metrics to easily track activity and promotional effort.",
+    },
+    {
+      target: "#monitoring",
+      content:
+        "Directly view livestreams from added streamers and obtain clips with ease (Twitch only). Witness your campaigns coming to life!",
+    },
+    { target: "#statistics", content: "Statistics ... " },
+    { target: "#reports", content: "Reports ... " },
+    {
+      target: "#faq",
+      content:
+        "Have any doubts? You can quickly find possible answers to common problems here. Contact us at (insert Streamcoi admin contact details here) if the FAQ does not mention the problem.",
+    },
+  ]);
+
+  const [activeId, setActiveId] = useState(null);
 
   return (
     <div className="root">
       <Nav />
       <div className="container">
         <div className="container-inner">
-          <div className="page-header-step">
+          <Joyride
+            steps={steps}
+            continuous={true}
+            showProgress={true}
+            run={true}
+            styles={{
+              options: {
+                backgroundColor: "#444444",
+                textColor: "white",
+                primaryColor: "#FF4E47",
+              },
+            }}
+          ></Joyride>
+          {/* <div className="page-header-step">
             <span className="blank">Partner rotators → </span>
             <span className="marked">Create new partner rotator</span>
-          </div>
-          <Steps />
-          <DndContext
+          </div> */}
+          {/* <Steps /> */}
+          {/* <DndContext
+            onDragStart={handleDragStart}
             onDragEnd={handleDragEnd}
             collisionDetection={closestCenter}
           >
@@ -107,11 +131,16 @@ function App() {
                 ))}
               </div>
             </SortableContext>
-          </DndContext>
+          </DndContext> */}
         </div>
       </div>
     </div>
   );
+
+  function handleDragStart(event) {
+    const { active } = event;
+    setActiveId(active.id);
+  }
 
   function handleDragEnd(event) {
     const { active, over } = event;
