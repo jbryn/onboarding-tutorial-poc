@@ -1,70 +1,70 @@
 .navigation {
-  background-color: #3d3c40;
+	background-color: #3d3c40;
 }
 .navigation-inner {
-  min-height: 72px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+	min-height: 72px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
 }
 
 .navigation-links {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .navigation-item {
-  color: white;
-  padding: 12px 35px;
-  display: inline-block;
-  font-size: 16px;
-  font-weight: bold;
-  transition: 0.2s ease color;
-  white-space: nowrap;
+	color: white;
+	padding: 12px 35px;
+	display: inline-block;
+	font-size: 16px;
+	font-weight: bold;
+	transition: 0.2s ease color;
+	white-space: nowrap;
 }
 
 .navigation-item:hover {
-  color: #b33d35;
-  cursor: pointer;
+	color: #b33d35;
+	cursor: pointer;
 }
 
 .navigation-item--logo {
-  flex-grow: 1;
-  padding: 0;
+	flex-grow: 1;
+	padding: 0;
 }
 
 .active {
-  color: #ff574b;
+	color: #ff574b;
 }
 .container {
-  position: relative;
-  max-width: 1240px;
-  margin: 0 auto;
-  padding-left: 15px;
-  padding-right: 15px;
+	position: relative;
+	max-width: 1240px;
+	margin: 0 auto;
+	padding-left: 15px;
+	padding-right: 15px;
 }
 
 .btn {
-  justify-content: center;
-  min-height: 48px;
-  color: hsl(0, 0%, 23%);
-  border: 1px solid transparent;
-  transition: 0.25s ease;
-  cursor: pointer;
+	justify-content: center;
+	min-height: 48px;
+	color: hsl(0, 0%, 23%);
+	border: 1px solid transparent;
+	transition: 0.25s ease;
+	cursor: pointer;
 }
 .btn--profile {
-  display: grid;
-  place-items: center;
-  width: 48px;
-  height: 48px;
-  padding: 0;
-  border-radius: 50%;
-  box-shadow: none;
-  background-color: transparent;
-  min-width: unset;
+	display: grid;
+	place-items: center;
+	width: 48px;
+	height: 48px;
+	padding: 0;
+	border-radius: 50%;
+	box-shadow: none;
+	background-color: transparent;
+	min-width: unset;
 }
 .btn--profile img {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
 }
