@@ -2,70 +2,16 @@ import Nav from "./Nav";
 import Steps from "./Steps";
 import "./styles/App.css";
 import { useState } from "react";
-import { DndContext, closestCenter, DragOverlay } from "@dnd-kit/core";
-import {
-  arrayMove,
-  SortableContext,
-  horizontalListSortingStrategy,
-} from "@dnd-kit/sortable";
-import SortableItem from "./SortableItem";
-import Item from "./Item";
-import Joyride from "react-joyride";
+
+import Joyride, { STATUS } from "react-joyride";
 
 function App() {
-  const [items, setItems] = useState([
-    {
-      id: 1,
-      name: "g2",
-      image: "/2006110.webp",
-    },
-    {
-      id: 2,
-      name: "fnatic",
-      image: "/fnatic.png",
-    },
-    {
-      id: 3,
-      name: "faze",
-      image: "/faze.png",
-    },
-    {
-      id: 4,
-      name: "g2",
-      image: "/2006110.webp",
-    },
-    {
-      id: 5,
-      name: "fnatic",
-      image: "/fnatic.png",
-    },
-    {
-      id: 6,
-      name: "faze",
-      image: "/faze.png",
-    },
-    {
-      id: 7,
-      name: "g2",
-      image: "/2006110.webp",
-    },
-    {
-      id: 8,
-      name: "fnatic",
-      image: "/fnatic.png",
-    },
-    {
-      id: 9,
-      name: "faze",
-      image: "/faze.png",
-    },
-  ]);
-
   const [steps, setSteps] = useState([
     {
       target: "#campaigns",
       content:
         "Set up a campaign remotely for selected streamers and start receiving a detailed report",
+      disableBeacon: true,
     },
     {
       target: "#overlays",
@@ -89,20 +35,38 @@ function App() {
       content:
         "Have any doubts? You can quickly find possible answers to common problems here. Contact us at (insert Streamcoi admin contact details here) if the FAQ does not mention the problem.",
     },
+    {
+      target: "#tour-reset",
+      content:
+        "Not keen on tutorials? In case you need help in the future you can restart the guide here.",
+    },
   ]);
 
-  const [activeId, setActiveId] = useState(null);
+  const [isRunning, setRunning] = useState(false);
+
+  const handleJoyrideCallback = (data) => {
+    const { status } = data;
+    if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
+      setRunning(false);
+    }
+  };
 
   return (
     <div className="root">
       <Nav />
       <div className="container">
         <div className="container-inner">
+          <div className="start-tour" onClick={() => setRunning(true)}>
+            Start
+          </div>
           <Joyride
+            debug={true}
+            callback={handleJoyrideCallback}
             steps={steps}
             continuous={true}
             showProgress={true}
-            run={true}
+            showSkipButton={true}
+            run={isRunning}
             styles={{
               options: {
                 backgroundColor: "#444444",
@@ -111,51 +75,29 @@ function App() {
               },
             }}
           ></Joyride>
-          {/* <div className="page-header-step">
-            <span className="blank">Partner rotators → </span>
-            <span className="marked">Create new partner rotator</span>
-          </div> */}
-          {/* <Steps /> */}
-          {/* <DndContext
-            onDragStart={handleDragStart}
-            onDragEnd={handleDragEnd}
-            collisionDetection={closestCenter}
-          >
-            <SortableContext
-              items={items}
-              // strategy={horizontalListSortingStrategy}
-            >
-              <div className="page-wrapper">
-                {items.map(({ id, name, image }) => (
-                  <SortableItem key={id} id={id} name={name} image={image} />
-                ))}
-              </div>
-            </SortableContext>
-          </DndContext> */}
         </div>
       </div>
+      <footer className="footer">
+        <div className="container footer-container">
+          <p>Streamcoi - Manage and monetise your streamers © 2021</p>
+          <div className="footer-navigation">
+            <a
+              id="tour-reset"
+              className="footer-item"
+              onClick={() => setRunning(true)}
+            >
+              Take guided tour
+            </a>
+            <div className="footer-item">
+              <div>Switch to Light mode</div>
+            </div>
+            <a className="footer-item">FAQ</a>
+            <a className="footer-item">Back to homepage</a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
-
-  function handleDragStart(event) {
-    const { active } = event;
-    setActiveId(active.id);
-  }
-
-  function handleDragEnd(event) {
-    const { active, over } = event;
-    if (active.id !== over.id) {
-      setItems((items) => {
-        const oldIndex = items.findIndex((item) => {
-          return item.id === active.id;
-        });
-        const newIndex = items.findIndex((item) => {
-          return item.id === over.id;
-        });
-        return arrayMove(items, oldIndex, newIndex);
-      });
-    }
-  }
 }
 
 export default App;
