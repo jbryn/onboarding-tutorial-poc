@@ -20,8 +20,14 @@ const tutSteps = [
     content:
       "Directly view livestreams from added streamers and obtain clips with ease (Twitch only). Witness your campaigns coming to life!",
   },
-  { target: "#statistics", content: "Statistics ... " },
-  { target: "#reports", content: "Reports ... " },
+  { 
+    target: "#statistics", 
+    content: "Gather all information and data in one place. Download data and browse through statistics of each streamer separately or together. Data are gathered from twitch only." 
+  },
+  { 
+    target: "#reports", 
+    content: "Reports will show you current state of your campaigns. Take a look at active or archived reports and dive into details in a click of a button." 
+  },
   {
     target: "#faq",
     content:
