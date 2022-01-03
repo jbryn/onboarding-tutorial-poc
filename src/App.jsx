@@ -1,27 +1,55 @@
 import Nav from "./Nav";
-import Steps from "./Steps";
 import "./styles/App.css";
-import { useState } from "react";
-import Joyride, { STATUS } from "react-joyride";
+import { useState, useEffect } from "react";
+import Joyride, { ACTIONS, EVENTS, STATUS } from "react-joyride";
 import WelcomeScreen from "./WelcomeScreen";
 import tutSteps from "./tutorial-steps";
 
 function App() {
-  const [steps] = useState(tutSteps);
+  const stepIndexToTab = [
+    "Campaigns",
+    "Overlays",
+    "Streamers",
+    "Monitoring",
+    "Statistics",
+    "Reports",
+    "FAQ",
+  ];
 
+  const [steps] = useState(tutSteps);
   const [isRunning, setRunning] = useState(false);
   const [isVisible, setVisible] = useState(true);
+  const [stepIndex, setStepIndex] = useState(-1);
 
   const handleJoyrideCallback = (data) => {
-    const { status } = data;
+    const { action, index, type, status } = data;
+
+    if ([EVENTS.STEP_AFTER, EVENTS.TARGET_NOT_FOUND].includes(type)) {
+      setStepIndex(index + (action === ACTIONS.PREV ? -1 : 1));
+    }
+
+    // if ([ACTIONS.SKIP].includes(action)) {
+    //   console.log("skip");
+    //   console.log(status);
+    //   setStepIndex(7);
+    // }
+
     if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
+      setStepIndex(0);
       setRunning(false);
     }
   };
 
   const handleStart = () => {
+    setStepIndex(0);
     setRunning(true);
     setVisible(false);
+  };
+
+  const handleSkip = () => {
+    setVisible(false);
+    setStepIndex(7);
+    setRunning(true);
   };
 
   return (
@@ -30,11 +58,12 @@ function App() {
       <div className="container">
         <div className="container-inner">
           {isVisible && (
-            <WelcomeScreen
-              handleStart={handleStart}
-              handleSkip={() => setVisible(false)}
-            />
+            <WelcomeScreen handleStart={handleStart} handleSkip={handleSkip} />
           )}
+          <h2 className="tabname">
+            {stepIndexToTab[stepIndex]}
+            {stepIndex === 7 && "Campaigns"}
+          </h2>
           <Joyride
             debug={true}
             callback={handleJoyrideCallback}
@@ -42,6 +71,7 @@ function App() {
             continuous={true}
             showProgress={true}
             showSkipButton={true}
+            stepIndex={stepIndex}
             run={isRunning}
             styles={{
               options: {
@@ -57,13 +87,13 @@ function App() {
         <div className="container footer-container">
           <p>Streamcoi - Manage and monetise your streamers © 2021</p>
           <div className="footer-navigation">
-            <a
+            <div
               id="tour-reset"
               className="footer-item"
               onClick={() => setRunning(true)}
             >
               Take guided tour
-            </a>
+            </div>
             <div className="footer-item">
               <div>Switch to Light mode</div>
             </div>

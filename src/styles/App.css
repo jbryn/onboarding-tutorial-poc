@@ -166,3 +166,8 @@ body {
   line-height: 16px;
   text-align: center;
 }
+
+.tabname {
+  color: white;
+  margin-top: 20%;
+}
